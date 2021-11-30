@@ -1,5 +1,6 @@
 package com.example.compose1
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -17,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose1.ui.theme.Compose1Theme
@@ -49,8 +51,10 @@ private fun Greeting(name: String) {
             Column(modifier = Modifier
                 .weight(1f)
                 .padding(bottom =  extraPadding.coerceAtLeast(0.dp))) {
-                Text(text = "Hello, ")
-                Text(text = name)
+                Text(text = "Hello,")
+                Text(text = name, style = MaterialTheme.typography.h4.copy(
+                    fontWeight = FontWeight.ExtraBold
+                ))
             }
             OutlinedButton(
                 onClick = { expanded.value = !expanded.value }
@@ -61,7 +65,13 @@ private fun Greeting(name: String) {
     }
 }
 
-@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(showBackground = true, widthDp = 320)
 @Composable
 fun GreetingsPreview() {
     Compose1Theme {
